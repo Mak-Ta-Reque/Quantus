@@ -229,6 +229,7 @@ def get_wrapped_model(model: ModelInterface, channel_first: bool) -> ModelInterf
     Returns
         A wrapped ModelInterface model.
     """
+    return PyTorchModel(model, channel_first)
     if isinstance(model, tf.keras.Model):
         return TensorFlowModel(model, channel_first)
     if isinstance(model, torch.nn.modules.module.Module):

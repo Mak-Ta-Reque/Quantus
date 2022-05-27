@@ -1,0 +1,28 @@
+[2022-05-27 12:36:28.787] [remoteagent] [info] Getting Manifest... ms-python.python
+[2022-05-27 12:36:29.622] [remoteagent] [info] Installing extension: ms-python.python
+[2022-05-27 12:36:30.844] [remoteagent] [info] Getting Manifest... ms-toolsai.jupyter
+[2022-05-27 12:36:32.000] [remoteagent] [info] Getting Manifest... ms-toolsai.jupyter-renderers
+[2022-05-27 12:36:32.761] [remoteagent] [info] Getting Manifest... ms-toolsai.jupyter-keymap
+[2022-05-27 12:36:33.663] [remoteagent] [info] Installing extension: ms-toolsai.jupyter
+[2022-05-27 12:36:33.663] [remoteagent] [info] Installing extension: ms-toolsai.jupyter-renderers
+[2022-05-27 12:36:33.663] [remoteagent] [info] Installing extension: ms-toolsai.jupyter-keymap
+[2022-05-27 12:36:34.737] [remoteagent] [info] Downloaded extension: ms-toolsai.jupyter-keymap /home/kadir/IML/Quantus/.code-server/CachedExtensionVSIXs/ms-toolsai.jupyter-keymap-1.0.0
+[2022-05-27 12:36:34.820] [remoteagent] [info] Extracted extension to /home/kadir/IML/Quantus/.code-server/extensions/.9537847e-7c98-4aa0-a27f-ee8b7b20077c: ms-toolsai.jupyter-keymap
+[2022-05-27 12:36:34.827] [remoteagent] [info] Renamed to /home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-keymap-1.0.0
+[2022-05-27 12:36:34.830] [remoteagent] [info] Extracting completed. ms-toolsai.jupyter-keymap
+[2022-05-27 12:36:35.821] [remoteagent] [info] Downloaded extension: ms-toolsai.jupyter-renderers /home/kadir/IML/Quantus/.code-server/CachedExtensionVSIXs/ms-toolsai.jupyter-renderers-1.0.6
+[2022-05-27 12:36:36.182] [remoteagent] [info] Extracted extension to /home/kadir/IML/Quantus/.code-server/extensions/.26923415-1f70-4b60-a538-e2d27c3dea3d: ms-toolsai.jupyter-renderers
+[2022-05-27 12:36:36.188] [remoteagent] [info] Renamed to /home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-renderers-1.0.6
+[2022-05-27 12:36:36.191] [remoteagent] [info] Extracting completed. ms-toolsai.jupyter-renderers
+[2022-05-27 12:36:36.811] [remoteagent] [info] Downloaded extension: ms-toolsai.jupyter /home/kadir/IML/Quantus/.code-server/CachedExtensionVSIXs/ms-toolsai.jupyter-2022.3.1000752054
+[2022-05-27 12:36:38.128] [remoteagent] [info] Extracted extension to /home/kadir/IML/Quantus/.code-server/extensions/.8cdb7951-3922-4bb9-8672-23bab0c48b7f: ms-toolsai.jupyter
+[2022-05-27 12:36:38.147] [remoteagent] [info] Renamed to /home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054
+[2022-05-27 12:36:38.154] [remoteagent] [info] Extracting completed. ms-toolsai.jupyter
+[2022-05-27 12:36:48.957] [remoteagent] [info] Downloaded extension: ms-python.python /home/kadir/IML/Quantus/.code-server/CachedExtensionVSIXs/ms-python.python-2022.4.1
+[2022-05-27 12:36:54.805] [remoteagent] [info] Extracted extension to /home/kadir/IML/Quantus/.code-server/extensions/.c5ac8623-7a8f-4490-abc4-860c4b12cb38: ms-python.python
+[2022-05-27 12:36:54.822] [remoteagent] [info] Renamed to /home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1
+[2022-05-27 12:36:54.827] [remoteagent] [info] Extracting completed. ms-python.python
+[2022-05-27 12:36:54.827] [remoteagent] [info] Extension installed successfully: ms-toolsai.jupyter-keymap
+[2022-05-27 12:36:54.827] [remoteagent] [info] Extension installed successfully: ms-toolsai.jupyter-renderers
+[2022-05-27 12:36:54.827] [remoteagent] [info] Extension installed successfully: ms-toolsai.jupyter
+[2022-05-27 12:36:54.827] [remoteagent] [info] Extension installed successfully: ms-python.python
