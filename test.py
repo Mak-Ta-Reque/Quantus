@@ -150,7 +150,7 @@ a_batch_intgrad = quantus.normalise_by_negative(IntegratedGradients(model).attri
 a_batch_gradCAM = LayerGradCam(model,model.conv_2).attribute(inputs=x_batch, target=y_batch)
 a_batch_gradCAM  = LayerAttribution.interpolate(a_batch_gradCAM, (28, 28)).sum(axis=1).cpu().detach().numpy()
 
-exp = [a_batch_saliency, ]
+exp = {"Saliency":a_batch_saliency , "IntegratedGradients": a_batch_intgrad , "GradCam":a_batch_gradCAM}
 
 
 print(a_batch_gradCAM.shape)
@@ -180,40 +180,11 @@ plt.savefig(f'{path}/quantus/tutorials/assets/mnist_example.png', dpi=400)
 plt.tight_layout()
 plt.show()
 
-# Define params for evaluation.
-params_eval = {
-    "nr_samples": 10,
-    "perturb_radius": 0.1,
-    "norm_numerator": quantus.fro_norm,
-    "norm_denominator": quantus.fro_norm,
-    "perturb_func": quantus.uniform_noise,
-    "similarity_func": quantus.difference,
-    "disable_warnings": True,
-}
 
-# Return max sensitivity scores in an one-liner - by calling the metric instance.
-scores_saliency = quantus.MaxSensitivity(**params_eval)(model=model, 
-   x_batch=x_batch,
-   y_batch=y_batch,
-   a_batch=a_batch_saliency,
-   **{"explain_func": quantus.explain, "method": "Saliency", "device": device, "img_size": 8, "normalise": False, "abs": False})
-
-# Return max sensitivity scores in an one-liner - by calling the metric instance.
-scores_intgrad = quantus.MaxSensitivity(**params_eval)(model=model, 
-   x_batch=x_batch,
-   y_batch=y_batch,
-   a_batch=a_batch_intgrad,
-   **{"explain_func": quantus.explain, "method": "IntegratedGradients", "device": device, "img_size": 8, "normalise": False, "abs": False})
-
-print(f"max-Sensitivity scores by Yeh et al., 2019\n" \
-      f"\n • Saliency = {np.mean(scores_saliency):.2f} ({np.std(scores_saliency):.2f})." \
-      f"\n • Integrated Gradients = {np.mean(scores_intgrad):.2f} ({np.std(scores_intgrad):.2f})."
-      )
-
-region_perturb = quantus.RegionPerturbation(**{
-    "patch_size": 8,
-    "regions_evaluation": 100,
-    "img_size": 8,
+region_perturb = quantus.RegionPerturbationThreshold(**{
+    "patch_size": 2,
+    "regions_evaluation": 300,
+    "img_size": 224,
     "perturb_baseline": "uniform",  
 })
     
@@ -221,9 +192,9 @@ region_perturb = quantus.RegionPerturbation(**{
 results = {method: region_perturb(model=model, 
                                   x_batch=x_batch,
                                   y_batch=y_batch,
-                                  a_batch=None,
-                                  gc_layer=model.conv_2,
+                                  a_batch=exp[method],
                                   **{"explain_func": quantus.explain, "method": method, "device": device}) for method in ["Saliency", "IntegratedGradients", "GradCam"]}
+
 
 # Plot example!
 region_perturb.plot(results=results, path_to_save=f'{path}/quantus/tutorials/assets/AOPC.png')
