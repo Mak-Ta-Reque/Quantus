@@ -71,6 +71,35 @@ def plot_selectivity_experiment(
     plt.show()
 
 
+def plot_region_threshold_perturbation_experiment(
+    results: Union[List[float], Dict[str, List[float]]], *args, **kwargs
+) -> None:
+    """
+    Plot the region perturbation experiment as done in paper:
+
+     References:
+        1) Samek, Wojciech, et al. "Evaluating the visualization of what a deep
+         neural network has learned." IEEE transactions on neural networks and
+          learning systems 28.11 (2016): 2660-2673.
+    """
+    fig = plt.figure(figsize=(8, 6))
+    if isinstance(results, dict):
+        for method, scores in results.items():
+            plt.plot(
+                np.arange(0, len(scores[0])),
+                np.mean(np.array(list(scores.values())), axis=0),
+                label=f"{str(method.capitalize())}",
+            )
+    else:
+        plt.plot(np.arange(0, len(results)), np.mean(results, axis=0))
+    plt.xlabel("Threshold steps")
+    plt.ylabel("AOPC relative to random")
+    plt.gca().set_yticklabels(
+        ["{:.0f}%".format(x * 100) for x in plt.gca().get_yticks()]
+    )
+    plt.legend()
+    plt.show()
+
 def plot_region_perturbation_experiment(
     results: Union[List[float], Dict[str, List[float]]], *args, **kwargs
 ) -> None:

@@ -19,6 +19,41 @@ from .utils import (
     offset_coordinates,
 )
 
+def baseline_replacement_by_mask(
+    arr: np.array,
+    indices: Union[int, Sequence[int], Tuple[np.array]],
+    lower_bound: float = 0.02,
+    upper_bound: Union[None, float] = None,
+    **kwargs,
+) -> np.array:
+    """
+    Add noise to the input at indices as sampled uniformly random from [-lower_bound, lower_bound].
+    if upper_bound is None, and [lower_bound, upper_bound] otherwise.
+
+    Parameters
+    ----------
+        arr: array to be perturbed
+        indices: array-like, with a subset shape of arr
+        indexed_axes: axes of arr that are indexed. These need to be consecutive,
+                      and either include the first or last dimension of array.
+        lower_bound: lower bound for uniform sampling
+        upper_bound: upper bound for uniform sampling
+    """
+
+    if upper_bound is None:
+        noise = np.random.uniform(low=-lower_bound, high=lower_bound, size=arr.shape)
+    else:
+        assert upper_bound > lower_bound, (
+            "Parameter 'upper_bound' needs to be larger than 'lower_bound', "
+            "but {} <= {}".format(upper_bound, lower_bound)
+        )
+        noise = np.random.uniform(low=lower_bound, high=upper_bound, size=arr.shape)
+
+    arr_perturbed = copy.copy(arr)
+    noise_perturbed = np.multiply(noise, indices)
+    arr_perturbed = np.multiply(arr_perturbed, ~indices)
+    arr_perturbed = np.add(arr_perturbed, noise_perturbed)
+    return arr_perturbed
 
 def baseline_replacement_by_indices(
     arr: np.array,

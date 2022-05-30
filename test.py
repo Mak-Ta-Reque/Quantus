@@ -184,7 +184,7 @@ plt.show()
 region_perturb = quantus.RegionPerturbationThreshold(**{
     "patch_size": 2,
     "regions_evaluation": 300,
-    "img_size": 224,
+    "img_size": 28,
     "perturb_baseline": "uniform",  
 })
     
