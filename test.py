@@ -197,5 +197,6 @@ results = {method: region_perturb(model=model,
 
 
 # Plot example!
-region_perturb.plot(results=results, path_to_save=f'{path}/quantus/tutorials/assets/AOPC.png')
+#region_perturb.plot(results=results, path_to_save=f'{path}/quantus/tutorials/assets/AOPC.png')
+print(region_perturb.get_auc_score())
 
