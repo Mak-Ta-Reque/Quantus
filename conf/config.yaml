@@ -1,0 +1,18 @@
+# @package _global_
+config:
+  MODEL:
+    name: resnet50
+    weight: imagenet
+  EXPLANATION:
+      method: ["Saliency", "IntegratedGradients", "LayerGradCam"]
+      layer: layer4[2].conv3 # According the architecture
+  DATA:
+      type: [diskfile]
+      loader: MNIST
+      root: "./sample_data"
+      n_samples: 20
+      size: 28
+
+
+
+
