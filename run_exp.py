@@ -13,6 +13,7 @@ from collections.abc import Iterable
 from typing import Union
 from torchvision import transforms
 import torchvision
+from captum.attr import *
 SMALL_OUTPUT = ['LayerGradCam']
 def get_model(**kwargs) -> torch.nn.Module:
 
@@ -63,7 +64,7 @@ def main(cfg : DictConfig) -> dict:
 
     model = get_model(**model_name)
     explantion_layer = get_layer(model, **config["config"]["EXPLANATION"])
-    data_x, data_y = get_data(**config["config"]["DATA"])
+    x_batch, y_batch = get_data(**config["config"]["DATA"])
 
     methods = config["config"]["EXPLANATION"]["method"]
     print(methods)
