@@ -1,4 +1,6 @@
 import hydra
+import os
+import time
 import quantus
 from omegaconf import DictConfig, OmegaConf
 import yaml
@@ -15,6 +17,7 @@ from torchvision import transforms
 import torchvision
 from captum.attr import *
 SMALL_OUTPUT = ['LayerGradCam']
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") 
 def get_model(**kwargs) -> torch.nn.Module:
 
     pretrained = kwargs.get("weight") #True if kwargs.get("weight") == "imagenet" else kwargs.get("weight")
@@ -35,6 +38,7 @@ def get_model(**kwargs) -> torch.nn.Module:
         model = None
         raise ("Custom model Not implemented")
     logging.info("Model summery: \n%s"%model)
+    model.eval()
     return model
 def get_layer(model= None, **kwargs):
     layer = eval("model.%s"%kwargs["layer"])
@@ -43,9 +47,11 @@ def get_layer(model= None, **kwargs):
 
 def get_data(**kwargs):
     root = kwargs["root"]
+    loader = kwargs["loader"]
     samples =  kwargs["n_samples"]
-    transformer = transforms.Compose([transforms.ToTensor()])
-    test_set = eval("torchvision.datasets.MNIST(root='%s', train=False, transform=transformer, download=True)"%root)
+    size = eval(kwargs["size"])
+    transformer = transforms.Compose([transforms.Resize(size), transforms.ToTensor()])
+    test_set = eval("torchvision.datasets.%s(root='%s', transform=transformer)"%(loader, root))
     test_loader = torch.utils.data.DataLoader(test_set, batch_size=samples, pin_memory=True)
     x_batch, y_batch = iter(test_loader).next()
     return x_batch, y_batch
@@ -65,23 +71,90 @@ def main(cfg : DictConfig) -> dict:
     model = get_model(**model_name)
     explantion_layer = get_layer(model, **config["config"]["EXPLANATION"])
     x_batch, y_batch = get_data(**config["config"]["DATA"])
-
+    image_size = eval(config["config"]["DATA"]["size"])
     methods = config["config"]["EXPLANATION"]["method"]
+    output_dir = config["config"]["OUTPUT"]
+    
     print(methods)
-
+    saliency_outputs = {} # Produced saliency maps
+    #Produce faitfulness
     for method in methods:
-        if method in SMALL_OUTPUT:
-            a_batch_gradCAM = LayerGradCam(model, explantion_layer).attribute(inputs=data_x, target=data_x)
-            a_batch = LayerAttribution.interpolate(a_batch_gradCAM, (28, 28)).sum(axis=1).cpu().detach().numpy()
+        if method == "LayerGradCam":
+            time_1 = time.time()
+            a_batch_gradCAM = LayerGradCam(model, explantion_layer).attribute(inputs=x_batch, target=y_batch)
+            a_batch = LayerAttribution.interpolate(a_batch_gradCAM, image_size).sum(axis=1).cpu().detach().numpy()
+            print(a_batch.shape)    
+            time_2 = time.time()
+            saliency_outputs[method] = [a_batch, (time_2 - time_1)] # Saliency and the time to generate saliency
+
         elif method == "Saliency" :
-            a_batch_saliency = quantus.normalise_by_negative(
+            time_1 = time.time()
+            a_batch = quantus.normalise_by_negative(
             Saliency(model).attribute(inputs=x_batch, target=y_batch, abs=True).sum(axis=1).cpu().numpy())
+            time_2 = time.time()
+            saliency_outputs[method] = [a_batch, (time_2 - time_1)]
+
         elif method == "IntegratedGradients":
-            quantus.normalise_by_negative(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
-                                                                               baselines=torch.zeros_like(x_batch)).sum(
-                axis=1).cpu().numpy())
+            time_1 = time.time()
+            print("IG")
+            a_batch = quantus.normalise_by_negative(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
+            baselines=torch.zeros_like(x_batch)).sum(axis=1).cpu().numpy())
+            time_2 = time.time()
+            print(a_batch.shape)
+            saliency_outputs[method] = [a_batch, (time_2 - time_1)]
         else:
             raise NameError("Not implemented")
+    print(["%s : %s"%(i, saliency_outputs[i][1] ) for i in methods])
+
+
+    # Faithfulness check
+    matrics = config["config"]["EVALUATION"]
+    matrics_obj ={}
+    for matric in matrics:
+        if matric == "RegionPerturbationThreshold":
+            region_perturb = quantus.RegionPerturbationThreshold(**{
+            "patch_size": 2,
+            "regions_evaluation": 10,
+            "img_size": image_size,
+            "perturb_baseline": "uniform", })
+            matrics_obj[matric] = region_perturb
+        
+        elif matric =="ROAD":
+            region_perturb = quantus.ROAD(**{
+            "patch_size": 2,
+            "regions_evaluation": 10,
+            "img_size": image_size,
+            "perturb_baseline": "uniform", })
+            matrics_obj[matric] = region_perturb
+
+        
+        else:
+            raise NameError("Not implemented")
+    x_batch, y_batch = x_batch.cpu().numpy(), y_batch.cpu().numpy()
+    run_time = {
+    }
+    for key, val in  matrics_obj.items():
+        results = {}
+        for method in methods:
+            time_1 = time.time()
+        
+            result = val(model=model, x_batch=x_batch,
+                                    y_batch=y_batch,
+                                    a_batch=saliency_outputs[method][0],
+                                    **{"explain_func": quantus.explain, "method":method, "device": device})
+            time_2 = time.time()
+            run_time[key] = [method, (time_2-time_1)]
+            results[method] = result
+        print(run_time)
+        os.mkdir("%s/%s/"%(output_dir, key))
+        val.plot(results=results, path_to_save= "%s/%s/%s.png"%(output_dir, key, key))
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
