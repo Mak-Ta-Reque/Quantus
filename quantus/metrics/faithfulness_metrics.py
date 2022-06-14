@@ -14,6 +14,7 @@ from ..helpers import warn_func
 from ..helpers.asserts import attributes_check
 from ..helpers.model_interface import ModelInterface
 from ..helpers.normalise_func import normalise_by_negative
+from ..helpers.normalise_func import normalise_by_positive
 from ..helpers.similar_func import correlation_pearson, correlation_spearman, mse
 from ..helpers.perturb_func import baseline_replacement_by_indices
 from ..helpers.perturb_func import baseline_replacement_by_mask
@@ -2784,7 +2785,7 @@ class RegionPerturbationThreshold(Metric):
         self.kwargs = kwargs
         self.abs = self.kwargs.get("abs", False)
         self.normalise = self.kwargs.get("normalise", True)
-        self.normalise_func = self.kwargs.get("normalise_func", normalise_by_negative)
+        self.normalise_func = self.kwargs.get("normalise_func", normalise_by_positive)
         self.default_plot_func = plotting.plot_region_threshold_perturbation_experiment
         self.disable_warnings = self.kwargs.get("disable_warnings", False)
         self.display_progressbar = self.kwargs.get("display_progressbar", False)
@@ -2903,8 +2904,7 @@ class RegionPerturbationThreshold(Metric):
         # Expand attributions to input dimensionality and infer input dimensions covered by the attributions.
         a_batch = utils.expand_attribution_channel(a_batch, x_batch_s)
         a_axes = utils.infer_attribution_axes(a_batch, x_batch_s)
-        self.max_heatmap_val = np.max(x_batch)
-        self.min_heatmap_val = np.min(x_batch)
+        
         #print(x_batch.shape)
         # Asserts.
         asserts.assert_attributions(x_batch=x_batch_s, a_batch=a_batch)
@@ -2927,7 +2927,8 @@ class RegionPerturbationThreshold(Metric):
 
             if self.abs:
                 a = np.abs(a)
-            
+            self.max_heatmap_val = np.max(a)
+            self.min_heatmap_val = np.min(a)
             #print("Max value of heatmap: ", np.max(a))
             sub_results = []
             x_perturbed = x.copy()

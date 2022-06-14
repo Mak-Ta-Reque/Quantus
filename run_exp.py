@@ -58,11 +58,7 @@ def get_data(**kwargs):
 
 
 
-
-
-
-
-@hydra.main(version_base=None, config_path="conf", config_name="config")
+@hydra.main(config_path="conf", config_name="config")
 def main(cfg : DictConfig) -> dict:
     config = yaml.load(OmegaConf.to_yaml(cfg),  Loader=SafeLoader)
     logging.info("\nModel: {MODEL}\nExplanation method: {EXPLANATION} \nData: {DATA}".format(**config["config"]))
@@ -83,13 +79,14 @@ def main(cfg : DictConfig) -> dict:
             time_1 = time.time()
             a_batch_gradCAM = LayerGradCam(model, explantion_layer).attribute(inputs=x_batch, target=y_batch)
             a_batch = LayerAttribution.interpolate(a_batch_gradCAM, image_size).sum(axis=1).cpu().detach().numpy()
+            a_batch = quantus.normalise_by_max(a_batch)
             print(a_batch.shape)    
             time_2 = time.time()
             saliency_outputs[method] = [a_batch, (time_2 - time_1)] # Saliency and the time to generate saliency
 
         elif method == "Saliency" :
             time_1 = time.time()
-            a_batch = quantus.normalise_by_negative(
+            a_batch = quantus.normalise_by_max(
             Saliency(model).attribute(inputs=x_batch, target=y_batch, abs=True).sum(axis=1).cpu().numpy())
             time_2 = time.time()
             saliency_outputs[method] = [a_batch, (time_2 - time_1)]
@@ -97,7 +94,7 @@ def main(cfg : DictConfig) -> dict:
         elif method == "IntegratedGradients":
             time_1 = time.time()
             print("IG")
-            a_batch = quantus.normalise_by_negative(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
+            a_batch = quantus.normalise_by_max(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
             baselines=torch.zeros_like(x_batch)).sum(axis=1).cpu().numpy())
             time_2 = time.time()
             print(a_batch.shape)
@@ -111,18 +108,18 @@ def main(cfg : DictConfig) -> dict:
     matrics = config["config"]["EVALUATION"]
     matrics_obj ={}
     for matric in matrics:
-        if matric == "RegionPerturbationThreshold":
-            region_perturb = quantus.RegionPerturbationThreshold(**{
-            "patch_size": 2,
-            "regions_evaluation": 10,
+        if matric == "RegionPerturbation":
+            region_perturb = quantus.RegionPerturbation(**{
+            "patch_size": 8,
+            "regions_evaluation": 100,
             "img_size": image_size,
             "perturb_baseline": "uniform", })
             matrics_obj[matric] = region_perturb
         
-        elif matric =="ROAD":
-            region_perturb = quantus.ROAD(**{
+        elif matric =="RegionPerturbationThreshold":
+            region_perturb = quantus.RegionPerturbationThreshold(**{
             "patch_size": 2,
-            "regions_evaluation": 10,
+            "regions_evaluation": 100,
             "img_size": image_size,
             "perturb_baseline": "uniform", })
             matrics_obj[matric] = region_perturb
@@ -131,9 +128,10 @@ def main(cfg : DictConfig) -> dict:
         else:
             raise NameError("Not implemented")
     x_batch, y_batch = x_batch.cpu().numpy(), y_batch.cpu().numpy()
+
     run_time = {
     }
-    for key, val in  matrics_obj.items():
+    """for key, val in  matrics_obj.items():
         results = {}
         for method in methods:
             time_1 = time.time()
@@ -141,21 +139,26 @@ def main(cfg : DictConfig) -> dict:
             result = val(model=model, x_batch=x_batch,
                                     y_batch=y_batch,
                                     a_batch=saliency_outputs[method][0],
-                                    **{"explain_func": quantus.explain, "method":method, "device": device})
+                                    **{"method":method, "device": device})
             time_2 = time.time()
             run_time[key] = [method, (time_2-time_1)]
             results[method] = result
         print(run_time)
+        
         os.mkdir("%s/%s/"%(output_dir, key))
         val.plot(results=results, path_to_save= "%s/%s/%s.png"%(output_dir, key, key))
+    """
+    
+    for key, metric_method in matrics_obj.items():
+        results = {method: metric_method(model = model, 
+                                  x_batch = x_batch,
+                                  y_batch = y_batch,
+                                  a_batch = saliency_outputs[method][0],
+                                  **{"explain_func": quantus.explain, "method": method, "device": device}) for method in methods}
+        metric_method.plot(results=results, path_to_save= "%s/AOPC_%s.png"%(output_dir, key))
 
 
 
-
-
-
-
-
-
+    
 if __name__ == "__main__":
     main()

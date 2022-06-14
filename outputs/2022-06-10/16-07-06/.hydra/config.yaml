@@ -1,0 +1,21 @@
+config:
+  MODEL:
+    name: resnet50
+    weight: imagenet
+  EXPLANATION:
+    method:
+    - Saliency
+    - LayerGradCam
+    - IntegratedGradients
+    layer: layer4[2].conv3
+  DATA:
+    type:
+    - diskfile
+    loader: ImageNet
+    root: /ds/images/imagenet
+    n_samples: 20
+    size: (240,240)
+  EVALUATION:
+  - RegionPerturbation
+  - RegionPerturbationThreshold
+  OUTPUT: /netscratch/kadir/quantus

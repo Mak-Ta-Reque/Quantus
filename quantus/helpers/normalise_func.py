@@ -8,6 +8,11 @@ def normalise_by_max(a: np.ndarray) -> np.ndarray:
     a /= np.max(np.abs(a))
     return a
 
+def normalise_by_positive(a: np.ndarray) -> np.ndarray:
+    """ "Normalize attributions by the maximum absolute value of the explanation."""
+    #a /= np.max(np.abs(a))
+    a = (a - np.min(a)) / (np.max(a) -np.min(a))
+    return a
 
 def normalise_by_negative(a: np.ndarray) -> np.ndarray:
     """Normalise relevance given a relevance matrix (r) [-1, 1]."""
@@ -16,6 +21,7 @@ def normalise_by_negative(a: np.ndarray) -> np.ndarray:
     if a.max() <= 0.0:
         return -a / a.min()
     return (a > 0.0) * a / a.max() - (a < 0.0) * a / a.min()
+
 
 
 def denormalise(

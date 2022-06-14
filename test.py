@@ -153,7 +153,7 @@ a_batch_gradCAM  = LayerAttribution.interpolate(a_batch_gradCAM, (28, 28)).sum(a
 exp = {"Saliency":a_batch_saliency , "IntegratedGradients": a_batch_intgrad , "GradCam":a_batch_gradCAM}
 
 
-print(a_batch_gradCAM.shape)
+
 
 
 # Save x_batch and y_batch as numpy arrays that will be used to call metric instances.
@@ -197,6 +197,7 @@ results = {method: region_perturb(model=model,
 
 
 # Plot example!
-#region_perturb.plot(results=results, path_to_save=f'{path}/quantus/tutorials/assets/AOPC.png')
-print(region_perturb.get_auc_score())
+
+region_perturb.plot(results=results, path_to_save=f'{path}/quantus/tutorials/assets/AOPC.png')
+#print(results["GradCam"].get_auc_score())
 
