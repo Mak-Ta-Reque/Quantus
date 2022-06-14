@@ -148,15 +148,37 @@ def main(cfg : DictConfig) -> dict:
         os.mkdir("%s/%s/"%(output_dir, key))
         val.plot(results=results, path_to_save= "%s/%s/%s.png"%(output_dir, key, key))
     """
-    
+    time_record = {}
     for key, metric_method in matrics_obj.items():
+        results = {}
+        time_consumption = {}
+        for method in methods:
+            time_1 = time.time()
+            results[method] = metric_method(model = model, 
+                                  x_batch = x_batch,
+                                  y_batch = y_batch,
+                                  a_batch = saliency_outputs[method][0],
+                                  **{"explain_func": quantus.explain, "method": method, "device": device})
+            time_2 = time.time()
+            time_consumption[method] = (time_2 - time_1)
+        time_record[key] = time_consumption
+
+
+        metric_method.plot(results=results, path_to_save= "%s/AOPC_%s.png"%(output_dir, key))
+    time_record = {"time": time_record}
+    import json
+    with open("%s/AOPC_time_%s.json"%(output_dir, key), 'w') as fp:
+        json.dump(time_consumption, fp)
+
+    
+    """for key, metric_method in matrics_obj.items():
         results = {method: metric_method(model = model, 
                                   x_batch = x_batch,
                                   y_batch = y_batch,
                                   a_batch = saliency_outputs[method][0],
                                   **{"explain_func": quantus.explain, "method": method, "device": device}) for method in methods}
         metric_method.plot(results=results, path_to_save= "%s/AOPC_%s.png"%(output_dir, key))
-
+    """
 
 
     
