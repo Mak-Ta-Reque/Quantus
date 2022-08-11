@@ -1,0 +1,23 @@
+[2022-08-08 09:19:25.735] [remoteagent] [info] Extension host agent started.
+[2022-08-08 09:19:25.826] [remoteagent] [info] Deleted from disk ms-toolsai.jupyter-renderers /home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-renderers-1.0.8
+[2022-08-08 09:19:27.268] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] New connection established.
+[2022-08-08 09:19:27.398] [remoteagent] [warning] Switching to using in-memory credential store instead because Keytar failed to load: Cannot find module 'keytar'
+Require stack:
+- /tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/bootstrap-amd.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/util.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/cli.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/entry.js
+[2022-08-08 09:19:27.849] [remoteagent] [info] [<unknown>][c8c15b25][ExtensionHostConnection] New connection established.
+[2022-08-08 09:19:27.902] [remoteagent] [info] [<unknown>][c8c15b25][ExtensionHostConnection] <609227> Launched Extension Host Process.
+[2022-08-08 12:30:03.817] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[2022-08-08 12:30:04.207] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[2022-08-08 12:30:04.209] [remoteagent] [info] [<unknown>][c8c15b25][ExtensionHostConnection] The client has reconnected.
+[2022-08-08 12:30:04.360] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has reconnected.
+[2022-08-08 12:39:24.570] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[2022-08-08 12:39:24.792] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[2022-08-08 12:39:24.793] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has reconnected.
+[2022-08-08 12:39:24.852] [remoteagent] [info] [<unknown>][c8c15b25][ExtensionHostConnection] The client has reconnected.
+[2022-08-08 12:56:31.353] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[2022-08-08 13:12:44.769] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[2022-08-08 13:12:44.770] [remoteagent] [info] [<unknown>][c8c15b25][ExtensionHostConnection] The client has reconnected.
+[2022-08-08 13:12:44.824] [remoteagent] [info] [<unknown>][c199b80e][ManagementConnection] The client has reconnected.

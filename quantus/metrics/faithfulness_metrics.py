@@ -1474,7 +1474,7 @@ class RegionPerturbation(Metric):
             "perturb_func", baseline_replacement_by_indices
         )
         self.perturb_baseline = self.kwargs.get("perturb_baseline", "uniform")
-        self.regions_evaluation = self.kwargs.get("regions_evaluation", 100)
+        self.regions_evaluation = self.kwargs.get("regions_evaluation", 800)
         self.patch_size = self.kwargs.get("patch_size", 8)
         self.order = self.kwargs.get("order", "MoRF").lower()
         self.softmax = self.kwargs.get("softmax", True)
@@ -2747,7 +2747,7 @@ class RegionPerturbationThreshold(Metric):
         learning systems 28.11 (2016): 2660-2673.
 
     Current assumptions:
-        -Done according to Most Relevant First (MoRF) and Area Over the Perturbation Curve
+        -Done according to Most Relevant First (MoRF) and Area Over the Perturbation Curveƒƒ
         (AOPC).
         - 9 x 9 patch sizes was used in the paper as regions, but using 8 x 8
         to make sure non-overlapping
@@ -2949,6 +2949,7 @@ class RegionPerturbationThreshold(Metric):
             self.last_results[sample] = sub_results
 
         self.all_results.append(self.last_results)
+
 
         return self.last_results
 

@@ -23,7 +23,7 @@ def baseline_replacement_by_mask(
     arr: np.array,
     indices: Union[int, Sequence[int], Tuple[np.array]],
     lower_bound: float = 0.02,
-    upper_bound: Union[None, float] = None,
+    upper_bound: Union[None, float] = 0.9,
     **kwargs,
 ) -> np.array:
     """

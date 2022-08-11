@@ -8,7 +8,7 @@ from ..helpers.asserts import *
 from ..helpers.plotting import *
 from ..helpers.normalise_func import *
 from ..helpers.warn_func import *
-
+import numpy as np
 
 class Metric:
     """
@@ -178,6 +178,7 @@ class Metric:
         # Asserts.
         assert_plot_func(plot_func=plot_func)
 
+
         # Plot!
         plot_func(*args, **kwargs)
 
@@ -188,3 +189,75 @@ class Metric:
             plt.savefig(fname=path_to_save, dpi=400)
 
         return None
+    def plot_gradient(
+        self,
+        results: Union[List[float], Dict[str, List[float]]],
+        plot_func: Union[Callable, None] = None,
+        show: bool = True,
+        path_to_save: Union[str, None] = None,
+        *args,
+        **kwargs,
+    ) -> None:
+        """
+        Basic plotting functionality for Metric class.
+        The user provides a plot_func (Callable) that contains the actual plotting logic (but returns None).
+
+        Parameters
+        ----------
+        plot_func: a Callable with the actual plotting logic.
+        show: a boolean to state if the plot shall be shown.
+        path_to_save: a string that specifies the path to save file.
+        args: an optional with additional arguments.
+        kwargs: an optional dict with additional arguments.
+
+        Returns: None.
+        -------
+
+        """
+
+        for k, v in results.items():
+            #print(np.array(list(v.values())))
+            results[k] = np.gradient(np.sum(np.array(list(v.values())), axis=0)/len(v.keys()), 4)
+        # Get plotting func if not provided.
+        print(results)
+        if plot_func is None:
+            plot_func = kwargs.get("plot_func", self.default_plot_func)
+        fig = plt.figure(figsize=(8, 6))
+        if isinstance(results, dict):
+            for method, scores in results.items():
+                plt.plot(
+                    np.arange(0, len(scores)),
+                    scores,
+                    label=f"{str(method.capitalize())} ({len(list(scores))} samples)",
+                )
+        elif isinstance(results, list):
+            pass
+        plt.xlabel(f"# Patches removed")
+        plt.ylabel(f"Average function value $f(x)$")
+        plt.gca().set_yticklabels(
+            ["{:.0f}%".format(x * 100) for x in plt.gca().get_yticks()]
+        )
+        plt.legend()
+        plt.show()
+        plt.savefig(path_to_save, dpi=400)
+
+        # Asserts.
+        #assert_plot_func(plot_func=plot_func)
+
+    
+
+        # Plot!
+        #plot_func(*args, **kwargs)
+
+        #if show:
+        
+        #    plt.show()
+
+        #if path_to_save:
+        #    plt.savefig(fname=path_to_save, dpi=400)
+
+        return None
+
+        
+
+        

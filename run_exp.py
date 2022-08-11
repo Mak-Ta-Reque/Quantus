@@ -52,7 +52,7 @@ def get_data(**kwargs):
     size = eval(kwargs["size"])
     transformer = transforms.Compose([transforms.Resize(size), transforms.ToTensor()])
     test_set = eval("torchvision.datasets.%s(root='%s', transform=transformer)"%(loader, root))
-    test_loader = torch.utils.data.DataLoader(test_set, batch_size=samples, pin_memory=True)
+    test_loader = torch.utils.data.DataLoader(test_set, shuffle=True, batch_size=samples, pin_memory=True)
     x_batch, y_batch = iter(test_loader).next()
     return x_batch, y_batch
 
@@ -70,8 +70,6 @@ def main(cfg : DictConfig) -> dict:
     image_size = eval(config["config"]["DATA"]["size"])
     methods = config["config"]["EXPLANATION"]["method"]
     output_dir = config["config"]["OUTPUT"]
-    
-    print(methods)
     saliency_outputs = {} # Produced saliency maps
     #Produce faitfulness
     for method in methods:
@@ -79,8 +77,7 @@ def main(cfg : DictConfig) -> dict:
             time_1 = time.time()
             a_batch_gradCAM = LayerGradCam(model, explantion_layer).attribute(inputs=x_batch, target=y_batch)
             a_batch = LayerAttribution.interpolate(a_batch_gradCAM, image_size).sum(axis=1).cpu().detach().numpy()
-            a_batch = quantus.normalise_by_max(a_batch)
-            print(a_batch.shape)    
+            a_batch = quantus.normalise_by_max(a_batch)    
             time_2 = time.time()
             saliency_outputs[method] = [a_batch, (time_2 - time_1)] # Saliency and the time to generate saliency
 
@@ -93,15 +90,13 @@ def main(cfg : DictConfig) -> dict:
 
         elif method == "IntegratedGradients":
             time_1 = time.time()
-            print("IG")
             a_batch = quantus.normalise_by_max(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
             baselines=torch.zeros_like(x_batch)).sum(axis=1).cpu().numpy())
             time_2 = time.time()
-            print(a_batch.shape)
             saliency_outputs[method] = [a_batch, (time_2 - time_1)]
         else:
             raise NameError("Not implemented")
-    print(["%s : %s"%(i, saliency_outputs[i][1] ) for i in methods])
+    #print(["%s : %s"%(i, saliency_outputs[i][1] ) for i in methods])
 
 
     # Faithfulness check
@@ -118,8 +113,8 @@ def main(cfg : DictConfig) -> dict:
         
         elif matric =="RegionPerturbationThreshold":
             region_perturb = quantus.RegionPerturbationThreshold(**{
-            "patch_size": 2,
-            "regions_evaluation": 100,
+            "patch_size": 0,
+            "regions_evaluation": 20,
             "img_size": image_size,
             "perturb_baseline": "uniform", })
             matrics_obj[matric] = region_perturb
@@ -162,13 +157,13 @@ def main(cfg : DictConfig) -> dict:
             time_2 = time.time()
             time_consumption[method] = (time_2 - time_1)
         time_record[key] = time_consumption
+        metric_method.plot_gradient(results=results, path_to_save= "%s/AOPC_grad%s.png"%(output_dir, key))
 
 
-        metric_method.plot(results=results, path_to_save= "%s/AOPC_%s.png"%(output_dir, key))
     time_record = {"time": time_record}
     import json
     with open("%s/AOPC_time_%s.json"%(output_dir, key), 'w') as fp:
-        json.dump(time_consumption, fp)
+        json.dump(time_record, fp)
 
     
     """for key, metric_method in matrics_obj.items():

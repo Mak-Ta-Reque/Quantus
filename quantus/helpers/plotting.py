@@ -111,7 +111,6 @@ def plot_region_perturbation_experiment(
          neural network has learned." IEEE transactions on neural networks and
           learning systems 28.11 (2016): 2660-2673.
     """
-    print(results)
     fig = plt.figure(figsize=(8, 6))
     if isinstance(results, dict):
         for method, scores in results.items():

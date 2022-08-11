@@ -1,0 +1,115 @@
+> conda info --json
+> /usr/bin/python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
+> /usr/bin/python3 ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
+> /opt/conda/bin/python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
+Python interpreter path: /usr/bin/python3
+Starting Jedi language server.
+[ERROR 2022-7-8 9:19:34.591]: [
+  'Failed to start language server, Class name = r, completed in 1724ms, has a falsy return value, Arg 1: <Uri:/home/kadir/IML/Quantus>, Arg 2: {"id":"/usr/bin/python3","sysPrefix":"/usr","envType":"Global","envName":"","envPath":"","path":"/usr/bin/python3","architecture":3,"sysVersion":"3.6.9 (default, Jul 17 2020, 12:50:27) \\n[GCC 8.4.0]","version":{"raw":"3.6.9","major":3,"minor":6,"patch":9,"build":[],"prerelease":["final","0"]},"displayName":"Python 3.6.9 64-bit","detailedDisplayName":"Python 3.6.9 64-bit"}, Arg 3: {"documentSelector":[{"scheme":"file","language":"python"},{"scheme":"untitled","language":"python"},{"scheme":"vscode-notebook","language":"python"},{"scheme":"vscode-notebook-cell","language":"python"},{"scheme":"vscode-interactive-input","language":"python"}],"workspaceFolder":{"uri":{"$mid":1,"fsPath":"/home/kadir/IML/Quantus","external":"file:///home/kadir/IML/Quantus","path":"/home/kadir/IML/Quantus","scheme":"file"},"name":"Quantus","index":0},"synchronize":{"configurationSection":"python"},"outputChannel":{"name":"Python Language Server"},"revealOutputChannelOn":4,"initializationOptions":{"markupKindPreferred":"markdown","completion":{"resolveEagerly":false,"disableSnippets":false},"diagnostics":{"enable":true,"didOpen":true,"didSave":true,"didChange":true},"workspace":{"extraPaths":["/home/kadir/IML/Quantus"],"symbols":{"maxSymbols":0}}},"middleware":{"serviceContainer":{"container":{"options":{"autoBindInjectable":false,"defaultScope":"Transient","skipBaseClassChecks":true},"id":0,"_bindingDictionary":{"_map":{}},"_snapshots":[],"_middleware":null,"parent":null,"_metadataReader":{}}},"lastCaptured":{},"nextWindow":0,"eventCount":0,"workspace":{},"connectedPromise":{"scope":null,"_resolved":false,"_rejected":false,"_promise":{}},"eventName":"JEDI_LANGUAGE_SERVER.REQUEST","notebookAddon":{}},"connectionOptions":{"cancellationStrategy":{"_sender":{"folderName":"d6bce2c9dbc2b78e7676853425eecaa5bb48b85980"}}}}, Return Value: undefined',
+  [Error: Connection to server got closed. Server will not be restarted.
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+  	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+  	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+  	at Socket.emit (events.js:412:35)
+  	at Pipe.<anonymous> (net.js:686:12)]
+]
+[ERROR 2022-7-8 9:19:34.594]: [
+  'Starting language server, Class name = r, completed in 1729ms, has a falsy return value, , Return Value: undefined',
+  [Error: Connection to server got closed. Server will not be restarted.
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+  	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+  	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+  	at Socket.emit (events.js:412:35)
+  	at Pipe.<anonymous> (net.js:686:12)]
+]
+[ERROR 2022-7-8 9:19:34.594]: [
+  'Failed to start language server, Class name = r, completed in 1730ms, has a falsy return value, Arg 1: <Uri:/home/kadir/IML/Quantus>, Arg 2: {"id":"/usr/bin/python3","sysPrefix":"/usr","envType":"Global","envName":"","envPath":"","path":"/usr/bin/python3","architecture":3,"sysVersion":"3.6.9 (default, Jul 17 2020, 12:50:27) \\n[GCC 8.4.0]","version":{"raw":"3.6.9","major":3,"minor":6,"patch":9,"build":[],"prerelease":["final","0"]},"displayName":"Python 3.6.9 64-bit","detailedDisplayName":"Python 3.6.9 64-bit"}, Return Value: undefined',
+  [Error: Connection to server got closed. Server will not be restarted.
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+  	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+  	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+  	at Socket.emit (events.js:412:35)
+  	at Pipe.<anonymous> (net.js:686:12)]
+]
+[ERROR 2022-7-8 9:19:34.594]: [
+  'Failed to activate language server, Class name = a, completed in 1731ms, has a falsy return value, Arg 1: <Uri:/home/kadir/IML/Quantus>, Arg 2: {"id":"/usr/bin/python3","sysPrefix":"/usr","envType":"Global","envName":"","envPath":"","path":"/usr/bin/python3","architecture":3,"sysVersion":"3.6.9 (default, Jul 17 2020, 12:50:27) \\n[GCC 8.4.0]","version":{"raw":"3.6.9","major":3,"minor":6,"patch":9,"build":[],"prerelease":["final","0"]},"displayName":"Python 3.6.9 64-bit","detailedDisplayName":"Python 3.6.9 64-bit"}, Return Value: undefined',
+  [Error: Connection to server got closed. Server will not be restarted.
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+  	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+  	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+  	at Socket.emit (events.js:412:35)
+  	at Pipe.<anonymous> (net.js:686:12)]
+]
+[ERROR 2022-7-8 9:19:34.595]: [
+  'Failed to activate a workspace, Class name = f, completed in 4858ms, has a falsy return value, Arg 1: <Uri:/home/kadir/IML/Quantus>, Return Value: undefined',
+  [Error: Connection to server got closed. Server will not be restarted.
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+  	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+  	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+  	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+  	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+  	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+  	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+  	at Socket.emit (events.js:412:35)
+  	at Pipe.<anonymous> (net.js:686:12)]
+]
+[ERROR 2022-7-8 9:19:34.595]: Failure during activation. [Error: Connection to server got closed. Server will not be restarted.
+	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+	at Socket.emit (events.js:412:35)
+	at Pipe.<anonymous> (net.js:686:12)]
+[ERROR 2022-7-8 9:19:34.595]: sendStartupTelemetry() failed. [Error: Connection to server got closed. Server will not be restarted.
+	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:156031)
+	at S.handleConnectionClosed (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:32:10622)
+	at t (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:153810)
+	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+	at X (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:135140)
+	at invoke (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:281735)
+	at o.fire (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:24:282496)
+	at g.fireClose (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:125209)
+	at Socket.<anonymous> (/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/out/client/extension.js:47:126789)
+	at Socket.emit (events.js:412:35)
+	at Pipe.<anonymous> (net.js:686:12)]
+Python interpreter path: /opt/conda/bin/python
+Starting Jedi language server.
+> . /opt/conda/bin/activate && conda activate base && echo 'e8b39361-0157-4923-80e1-22d70d46dee6' && python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/printEnvVariables.py

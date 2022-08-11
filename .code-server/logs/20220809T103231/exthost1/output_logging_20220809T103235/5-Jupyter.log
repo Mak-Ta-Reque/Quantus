@@ -1,0 +1,35 @@
+Code - OSS (1.64.2, kasan.kl.dfki.de:58196, desktop)
+Jupyter Extension Version: 2022.3.1000752054.
+Python Extension Version: 2022.4.1.
+Info 10:33:05: ZMQ install verified.
+Error 10:33:05: Jupyter Extension (Error in Failed to update settings.json, method:fixSettingsFile): [EntryNotFound (FileSystemError): Unable to read file 'vscode-remote://kasan.kl.dfki.de:58196/root/.config/Code/User/settings.json' (Error: Unable to resolve nonexistent file 'vscode-remote://kasan.kl.dfki.de:58196/root/.config/Code/User/settings.json')
+	at Function._handleError (/tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/vs/workbench/services/extensions/node/extensionHostProcess.js:93:83879)
+	at Object.readFile (/tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/vs/workbench/services/extensions/node/extensionHostProcess.js:93:82793)
+	at async m.readFile (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:118743)
+	at async g.fixSettingsFile (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:4943)
+	at async Promise.all (index 0)
+	at async g.updateSettings (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:6705)] {
+  code: 'FileNotFound'
+}
+Error 10:33:05: Jupyter Extension (Error in Failed to update settings.json, method:fixSettingsFile): [EntryNotFound (FileSystemError): Unable to read file 'vscode-remote://kasan.kl.dfki.de:58196/home/kadir/IML/Quantus/.vscode/settings.json' (Error: Unable to resolve nonexistent file 'vscode-remote://kasan.kl.dfki.de:58196/home/kadir/IML/Quantus/.vscode/settings.json')
+	at Function._handleError (/tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/vs/workbench/services/extensions/node/extensionHostProcess.js:93:83879)
+	at Object.readFile (/tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/vs/workbench/services/extensions/node/extensionHostProcess.js:93:82793)
+	at async m.readFile (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:118743)
+	at async g.fixSettingsFile (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:4943)
+	at async Promise.all (index 1)
+	at async g.updateSettings (/home/kadir/IML/Quantus/.code-server/extensions/ms-toolsai.jupyter-2022.3.1000752054/out/client/extension.js:2:6705)] {
+  code: 'FileNotFound'
+}
+Info 10:33:05: Experiment status for python is {"enabled":true,"optInto":[],"optOutFrom":[]}
+Info 10:33:05: Getting activation commands for /usr/bin/python3 are not cached. May take a while.
+Info 10:33:06: Process Execution: > /usr/bin/python3 -m pip list
+> /usr/bin/python3 -m pip list
+Info 10:33:06: Process Execution: > /usr/bin/python3 -c "import pip"
+> /usr/bin/python3 -c "import pip"
+Info 13:19:20: Shutting down notebooks for b4983fb7-7ba4-4d4d-8c54-750faa7cdd3f
+Info 13:19:20: Disposing HostJupyterExecution cc14c612-f699-479e-b6f4-dea00a1f7f2a
+Info 13:19:20: Disposing super HostJupyterExecution cc14c612-f699-479e-b6f4-dea00a1f7f2a
+Info 13:19:20: Disposing HostJupyterExecution cc14c612-f699-479e-b6f4-dea00a1f7f2a
+Info 13:19:20: Finished disposing HostJupyterExecution  cc14c612-f699-479e-b6f4-dea00a1f7f2a
+Info 13:19:20: Cleaning up server cache cc14c612-f699-479e-b6f4-dea00a1f7f2a
+Info 13:19:20: Finished disposing HostJupyterExecution  cc14c612-f699-479e-b6f4-dea00a1f7f2a

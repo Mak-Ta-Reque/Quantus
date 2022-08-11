@@ -1,16 +1,16 @@
 # @package _global_
 config:
   MODEL:
-    name: resnet50
+    name: vgg16 #resnet50
     weight: imagenet
   EXPLANATION:
-      method: ["Saliency", "LayerGradCam", "IntegratedGradients"] # 
-      layer: layer4[2].conv3 # According the architecture
+      method: ["IntegratedGradients", "LayerGradCam"] #LayerGradCam", "IntegratedGradients"] 
+      layer: features[26] #layer4[2].conv3 # According the architecture
   DATA:
       type: [diskfile]
       loader: ImageNet
       root: "/ds/images/imagenet"
-      n_samples: 20
+      n_samples: 2
       size: (240,240)
   EVALUATION: ["RegionPerturbation", "RegionPerturbationThreshold"]
   OUTPUT: /netscratch/kadir/quantus

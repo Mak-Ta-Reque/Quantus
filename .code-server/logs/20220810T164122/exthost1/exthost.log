@@ -1,0 +1,60 @@
+[2022-08-10 16:41:25.947] [exthost] [info] Extension host with pid 3176077 started
+[2022-08-10 16:41:25.956] [exthost] [info] Lock '/home/kadir/IML/Quantus/.code-server/User/workspaceStorage/-2e0f1286/vscode.lock': Lock acquired.
+[2022-08-10 16:41:26.008] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-08-10 16:41:26.019] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.github
+[2022-08-10 16:41:26.028] [exthost] [info] ExtensionService#_doActivateExtension ms-python.python, startup: true, activationEvent: 'workspaceContains:setup.py'
+[2022-08-10 16:41:26.327] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-08-10 16:41:26.418] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-08-10 16:41:26.519] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:26.524] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:26.567] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-08-10 16:41:26.589] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-08-10 16:41:26.594] [exthost] [info] Eager extensions activated
+[2022-08-10 16:41:26.695] [exthost] [warning] [vscode.emmet] Accessing a resource scoped configuration without providing a resource is not expected. To get the effective value for 'emmet.includeLanguages', provide the URI of a resource or 'null' for any resource.
+[2022-08-10 16:41:28.831] [exthost] [info] ExtensionService#_doActivateExtension ms-toolsai.jupyter, startup: false, activationEvent: 'onLanguage:python'
+[2022-08-10 16:41:29.585] [exthost] [warning] [ms-toolsai.jupyter] Accessing a window scoped configuration for a resource is not expected. To associate 'jupyter.allowInput' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:29.804] [exthost] [info] ExtensionService#_doActivateExtension ms-toolsai.jupyter-renderers, startup: false, activationEvent: 'api', root cause: ms-toolsai.jupyter
+[2022-08-10 16:41:29.906] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:29.908] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:29.911] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:29.913] [exthost] [warning] [ms-python.python] Accessing a window scoped configuration for a resource is not expected. To associate 'python.languageServer' to a resource, define its scope to 'resource' in configuration contributions in 'package.json'.
+[2022-08-10 16:41:35.369] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:41:40.507] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:41:49.451] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:41:58.080] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:06.659] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:15.434] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:23.990] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:32.620] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:41.274] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:49.871] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:42:58.469] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:07.044] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:15.520] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:24.018] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:32.569] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:41.069] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:49.656] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:43:58.151] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:06.623] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:15.243] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:23.743] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:32.237] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:40.743] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:49.242] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:44:57.725] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:06.226] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:14.776] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:23.309] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:31.837] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:40.351] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:48.895] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:45:57.448] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:05.939] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:14.400] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:22.931] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:31.597] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:40.063] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:48.669] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:46:57.221] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008
+[2022-08-10 16:47:05.769] [exthost] [warning] [Decorations] CAPPING events from decorations provider vscode.git 1008

@@ -1,0 +1,22 @@
+[2022-08-09 10:32:31.553] [remoteagent] [info] Extension host agent started.
+[2022-08-09 10:32:33.271] [remoteagent] [info] [<unknown>][e0e30772][ManagementConnection] New connection established.
+[2022-08-09 10:32:33.396] [remoteagent] [warning] Switching to using in-memory credential store instead because Keytar failed to load: Cannot find module 'keytar'
+Require stack:
+- /tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/bootstrap-amd.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/util.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/cli.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/entry.js
+[2022-08-09 10:32:33.876] [remoteagent] [info] [<unknown>][b34d4fbc][ExtensionHostConnection] New connection established.
+[2022-08-09 10:32:33.925] [remoteagent] [info] [<unknown>][b34d4fbc][ExtensionHostConnection] <2259375> Launched Extension Host Process.
+[2022-08-09 12:21:22.631] [remoteagent] [info] [<unknown>][e0e30772][ManagementConnection] The client has disconnected, will wait for reconnection 3h before disposing...
+[2022-08-09 13:14:20.442] [remoteagent] [info] [<unknown>][e0e30772][ManagementConnection] Another client has connected, will shorten the wait for reconnection 5m before disposing...
+[2022-08-09 13:14:20.445] [remoteagent] [info] [<unknown>][b5417489][ManagementConnection] New connection established.
+[2022-08-09 13:14:21.049] [remoteagent] [info] [<unknown>][9fe99a34][ExtensionHostConnection] New connection established.
+[2022-08-09 13:14:21.067] [remoteagent] [info] [<unknown>][9fe99a34][ExtensionHostConnection] <2426710> Launched Extension Host Process.
+[2022-08-09 13:19:20.516] [remoteagent] [info] [<unknown>][e0e30772][ManagementConnection] The reconnection short grace time of 5m has expired, so the connection will be disposed.
+[2022-08-09 13:19:20.688] [remoteagent] [info] [<unknown>][b34d4fbc][ExtensionHostConnection] <2259375> Extension Host Process exited with code: 0, signal: null.
+[2022-08-09 14:54:36.730] [remoteagent] [info] [<unknown>][b5417489][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[2022-08-09 14:54:36.794] [remoteagent] [info] [<unknown>][9fe99a34][ExtensionHostConnection] <2426710> Extension Host Process exited with code: 0, signal: null.
+[2022-08-09 15:32:37.401] [remoteagent] [info] [<unknown>][f71702c1][ManagementConnection] New connection established.
+[2022-08-09 15:32:38.348] [remoteagent] [info] [<unknown>][a9a01f68][ExtensionHostConnection] New connection established.
+[2022-08-09 15:32:38.384] [remoteagent] [info] [<unknown>][a9a01f68][ExtensionHostConnection] <2624271> Launched Extension Host Process.

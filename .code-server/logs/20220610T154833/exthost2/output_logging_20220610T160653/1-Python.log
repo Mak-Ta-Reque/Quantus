@@ -1,7 +1,0 @@
-> conda info --json
-> /opt/conda/bin/python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
-Python interpreter path: /opt/conda/bin/python
-> /usr/bin/python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
-> /usr/bin/python3 ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/get_output_via_markers.py ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/interpreterInfo.py
-Starting Jedi language server.
-> . /opt/conda/bin/activate && conda activate base && echo 'e8b39361-0157-4923-80e1-22d70d46dee6' && python ./.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/printEnvVariables.py

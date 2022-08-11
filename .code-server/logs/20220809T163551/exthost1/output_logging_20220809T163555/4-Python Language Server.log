@@ -1,0 +1,145 @@
+Traceback (most recent call last):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/run-jedi-language-server.py", line 9, in <module>
+    from jedi_language_server.cli import cli
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/cli.py", line 7, in <module>
+    from .server import SERVER
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/server.py", line 15, in <module>
+    from pygls.lsp.methods import (
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/__init__.py", line 23, in <module>
+    from pygls.lsp.types import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/__init__.py", line 2, in <module>
+    from pygls.lsp.types.basic_structures import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/basic_structures.py", line 58, in <module>
+    class JsonRpcMessage(Model):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/main.py", line 304, in __new__
+    config=config,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 420, in infer
+    field_info=field_info,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 342, in __init__
+    self.prepare()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 456, in prepare
+    self.populate_validators()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 670, in populate_validators
+    *(get_validators() if get_validators else list(find_validators(self.type_, self.model_config))),
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/validators.py", line 674, in find_validators
+    if is_builtin_dataclass(type_):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/dataclasses.py", line 79, in is_builtin_dataclass
+    import dataclasses
+ModuleNotFoundError: No module named 'dataclasses'
+[Info  - 4:35:59 PM] Connection to server got closed. Server will restart.
+Traceback (most recent call last):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/run-jedi-language-server.py", line 9, in <module>
+    from jedi_language_server.cli import cli
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/cli.py", line 7, in <module>
+    from .server import SERVER
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/server.py", line 15, in <module>
+    from pygls.lsp.methods import (
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/__init__.py", line 23, in <module>
+    from pygls.lsp.types import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/__init__.py", line 2, in <module>
+    from pygls.lsp.types.basic_structures import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/basic_structures.py", line 58, in <module>
+    class JsonRpcMessage(Model):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/main.py", line 304, in __new__
+    config=config,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 420, in infer
+    field_info=field_info,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 342, in __init__
+    self.prepare()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 456, in prepare
+    self.populate_validators()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 670, in populate_validators
+    *(get_validators() if get_validators else list(find_validators(self.type_, self.model_config))),
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/validators.py", line 674, in find_validators
+    if is_builtin_dataclass(type_):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/dataclasses.py", line 79, in is_builtin_dataclass
+    import dataclasses
+ModuleNotFoundError: No module named 'dataclasses'
+[Info  - 4:36:00 PM] Connection to server got closed. Server will restart.
+Traceback (most recent call last):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/run-jedi-language-server.py", line 9, in <module>
+    from jedi_language_server.cli import cli
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/cli.py", line 7, in <module>
+    from .server import SERVER
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/server.py", line 15, in <module>
+    from pygls.lsp.methods import (
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/__init__.py", line 23, in <module>
+    from pygls.lsp.types import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/__init__.py", line 2, in <module>
+    from pygls.lsp.types.basic_structures import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/basic_structures.py", line 58, in <module>
+    class JsonRpcMessage(Model):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/main.py", line 304, in __new__
+    config=config,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 420, in infer
+    field_info=field_info,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 342, in __init__
+    self.prepare()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 456, in prepare
+    self.populate_validators()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 670, in populate_validators
+    *(get_validators() if get_validators else list(find_validators(self.type_, self.model_config))),
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/validators.py", line 674, in find_validators
+    if is_builtin_dataclass(type_):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/dataclasses.py", line 79, in is_builtin_dataclass
+    import dataclasses
+ModuleNotFoundError: No module named 'dataclasses'
+[Info  - 4:36:00 PM] Connection to server got closed. Server will restart.
+Traceback (most recent call last):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/run-jedi-language-server.py", line 9, in <module>
+    from jedi_language_server.cli import cli
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/cli.py", line 7, in <module>
+    from .server import SERVER
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/server.py", line 15, in <module>
+    from pygls.lsp.methods import (
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/__init__.py", line 23, in <module>
+    from pygls.lsp.types import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/__init__.py", line 2, in <module>
+    from pygls.lsp.types.basic_structures import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/basic_structures.py", line 58, in <module>
+    class JsonRpcMessage(Model):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/main.py", line 304, in __new__
+    config=config,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 420, in infer
+    field_info=field_info,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 342, in __init__
+    self.prepare()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 456, in prepare
+    self.populate_validators()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 670, in populate_validators
+    *(get_validators() if get_validators else list(find_validators(self.type_, self.model_config))),
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/validators.py", line 674, in find_validators
+    if is_builtin_dataclass(type_):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/dataclasses.py", line 79, in is_builtin_dataclass
+    import dataclasses
+ModuleNotFoundError: No module named 'dataclasses'
+[Info  - 4:36:00 PM] Connection to server got closed. Server will restart.
+Traceback (most recent call last):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/run-jedi-language-server.py", line 9, in <module>
+    from jedi_language_server.cli import cli
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/cli.py", line 7, in <module>
+    from .server import SERVER
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/jedi_language_server/server.py", line 15, in <module>
+    from pygls.lsp.methods import (
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/__init__.py", line 23, in <module>
+    from pygls.lsp.types import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/__init__.py", line 2, in <module>
+    from pygls.lsp.types.basic_structures import *
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pygls/lsp/types/basic_structures.py", line 58, in <module>
+    class JsonRpcMessage(Model):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/main.py", line 304, in __new__
+    config=config,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 420, in infer
+    field_info=field_info,
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 342, in __init__
+    self.prepare()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 456, in prepare
+    self.populate_validators()
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/fields.py", line 670, in populate_validators
+    *(get_validators() if get_validators else list(find_validators(self.type_, self.model_config))),
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/validators.py", line 674, in find_validators
+    if is_builtin_dataclass(type_):
+  File "/home/kadir/IML/Quantus/.code-server/extensions/ms-python.python-2022.4.1/pythonFiles/lib/jedilsp/pydantic/dataclasses.py", line 79, in is_builtin_dataclass
+    import dataclasses
+ModuleNotFoundError: No module named 'dataclasses'
+[Error - 4:36:00 PM] Connection to server got closed. Server will not be restarted.

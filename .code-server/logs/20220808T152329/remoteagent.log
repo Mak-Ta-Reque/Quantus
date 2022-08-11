@@ -1,0 +1,10 @@
+[2022-08-08 15:23:29.938] [remoteagent] [info] Extension host agent started.
+[2022-08-08 15:23:31.509] [remoteagent] [info] [<unknown>][32e87b25][ManagementConnection] New connection established.
+[2022-08-08 15:23:31.639] [remoteagent] [warning] Switching to using in-memory credential store instead because Keytar failed to load: Cannot find module 'keytar'
+Require stack:
+- /tmp/code-server-4.2.0-linux-amd64/lib/vscode/out/bootstrap-amd.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/util.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/cli.js
+- /tmp/code-server-4.2.0-linux-amd64/out/node/entry.js
+[2022-08-08 15:23:32.023] [remoteagent] [info] [<unknown>][84b70b36][ExtensionHostConnection] New connection established.
+[2022-08-08 15:23:32.157] [remoteagent] [info] [<unknown>][84b70b36][ExtensionHostConnection] <1584068> Launched Extension Host Process.

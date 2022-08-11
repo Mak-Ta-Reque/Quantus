@@ -1,0 +1,20 @@
+config:
+  MODEL:
+    name: vgg16
+    weight: imagenet
+  EXPLANATION:
+    method:
+    - Saliency
+    - LayerGradCam
+    layer: features[26]
+  DATA:
+    type:
+    - diskfile
+    loader: ImageNet
+    root: /ds/images/imagenet
+    n_samples: 10
+    size: (240,240)
+  EVALUATION:
+  - RegionPerturbation
+  - RegionPerturbationThreshold
+  OUTPUT: /netscratch/kadir/quantus
