@@ -388,3 +388,11 @@ interesting or useful in your research, use following Bibtex annotation to cite 
 ```
 
 When applying individual metrics of Quantus, please make sure to also properly cite the work of the original authors (as linked above). 
+
+``` Build docker file
+docker build -t maktareq/quantus .
+```
+
+```Run docker
+docker run -p 8899:8501 -ti --rm -v `pwd`:/app maktareq/quantus
+```
