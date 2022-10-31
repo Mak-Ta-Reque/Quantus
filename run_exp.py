@@ -9,7 +9,7 @@ import logging
 import json
 from collections import defaultdict
 import torch
-from os.path import exists
+
 import torchvision.models as models
 from collections.abc import Iterable
 from typing import Union
@@ -22,7 +22,8 @@ def get_model(**kwargs) -> torch.nn.Module:
 
     pretrained = kwargs.get("weight") #True if kwargs.get("weight") == "imagenet" else kwargs.get("weight")
 
-    model_name = kwargs.get("name") if kwargs.get("name") is not None else "vgg16"
+    model_name = kwargs.get("model_name") if kwargs.get("model_name") is not None else "vgg16"
+    print(kwargs)
     try:
         if pretrained ==  "imagenet":
             logging.info("Loading model with imagenet weight: %s"%pretrained)
@@ -44,6 +45,7 @@ def get_layer(model= None, **kwargs):
     layer = eval("model.%s"%kwargs["layer"])
 
     return layer
+
 
 def get_data(**kwargs):
     root = kwargs["root"]

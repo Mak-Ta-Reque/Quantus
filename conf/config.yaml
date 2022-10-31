@@ -8,8 +8,8 @@ config:
       layer: features[26] #layer4[2].conv3 # According the architecture
   DATA:
       type: [diskfile]
-      loader: ImageNet
-      root: "/ds/images/imagenet"
+      loader: ImageFolder
+      root: "/ds/images/imagenet/val"
       n_samples: 2
       size: (240,240)
   EVALUATION: ["RegionPerturbation", "RegionPerturbationThreshold"]

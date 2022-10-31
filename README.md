@@ -394,5 +394,5 @@ docker build -t maktareq/quantus .
 ```
 
 ```Run docker
-docker run -p 8899:8501 -ti --rm -v `pwd`:/app maktareq/quantus
+docker run -p 8899:8501 -ti --rm -v `pwd`:/app -v /Users/abka03/Desktop/quantus:/ds/images/imagenet maktareq/quantus
 ```
