@@ -22,7 +22,7 @@ from dataset import CSVdataset
 from gui_api import generate_exp
 
 import sys
-sys.path.insert(0, "/workspaces/Quantus_backup/road_evaluation")
+sys.path.insert(0, "/workspaces/Quantus/road_evaluation")
 # Create a directory inside tmp for storing image
 
 def del_files(path):
