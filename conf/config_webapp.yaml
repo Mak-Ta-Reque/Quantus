@@ -4,13 +4,13 @@ config:
     name: vgg16 #resnet50
     weight: imagenet
   EXPLANATION:
-      method: LayerGradCam #["IntegratedGradients", "LayerGradCam"] #LayerGradCam", "IntegratedGradients"] 
+      method: ["IntegratedGradients", "LayerGradCam"] #LayerGradCam", "IntegratedGradients"] 
       layer: features[26] #layer4[2].conv3 # According the architecture
   DATA:
       type: [diskfile]
       loader: ImageFolder
       root: "/workspaces/imagenet-mini/train"
-      batch_size: 1
+      batch_size: 2
       size: (240,240)
   EVALUATION: ["RegionPerturbation", "RegionPerturbationThreshold"]
   OUTPUT:

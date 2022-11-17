@@ -1,25 +1,28 @@
-from functools import cache
+import logging
 import pandas as pd
 import numpy as np
 import torch
 import logging
 from os.path import exists
 from torchvision import transforms
-import torchvision.models as models
+from torchvision import models as models
+from torch import nn as nn
 import torchvision
 import time
 from captum.attr import *
 import quantus
 import streamlit as st
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu") 
-
+from tqdm import tqdm
+from road_evaluation.experiments.explanation_generation.utils import explanation_method
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+supported_models = ["vgg16", "resnet18"]
 def output_perturbation(data_x, data_y, model, explantion, perturbation_method, saliency_method, amount):
     image_size = data_x[0].size()
     x_data, y_data = data_x.cpu().numpy(), data_y.cpu().numpy()
     if perturbation_method == "RegionPerturbation":
         region_perturb = quantus.RegionPerturbation(**{
         "patch_size": 8,
-        "regions_evaluation": 100,
+        "regions_evaluation": 1000,
         "img_size": image_size,
         "perturb_baseline": "uniform", })
         
@@ -40,6 +43,42 @@ def output_perturbation(data_x, data_y, model, explantion, perturbation_method, 
                                 **{"explain_func": quantus.explain, "method": perturbation_method, "device": device})
 
     return result
+
+def generate_exp(dataset, batch_size, model, explainer):
+    testloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=2)
+    model.eval()
+    correct = 0
+    with torch.no_grad():
+        for data in tqdm(testloader):
+            inputs, labels = data
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+            outputs = model(inputs)
+            _, predicted = torch.max(outputs.data, 1)
+            correct += (predicted == labels).sum().item()
+
+        acc =  100 * correct / len(testloader.dataset)
+        print('Accuracy of the network on test images: %.4f %%' % (
+                    100 * correct / len(testloader.dataset)))
+
+    cifar_train_expl = {}
+
+    ## get explanation function
+    get_expl = explanation_method(explainer)
+    for i_num in tqdm(range(len(dataset)), position=0, leave=True):
+        expl_dict = {}
+        sample, clss = dataset[i_num]
+        outputs = model(sample.unsqueeze(0).to(device))
+        _, predicted = torch.max(outputs.data, 1)
+        expl = get_expl(model, sample.unsqueeze(0).to(device), clss)
+        # print(predicted.data[0].cpu().numpy(), outputs.data[0].cpu().numpy(), clss)
+        expl_dict['expl'] = expl
+        expl_dict['prediction'] = predicted.data[0].cpu().numpy()
+        expl_dict['label'] = clss
+        expl_dict['predict_p'] = outputs.data[0].cpu().numpy()
+        cifar_train_expl[i_num] = expl_dict
+    return cifar_train_expl, acc
+
 
 @st.cache(allow_output_mutation=True)
 def get_model(**kwargs) -> torch.nn.Module:
@@ -66,6 +105,25 @@ def get_model(**kwargs) -> torch.nn.Module:
     model.eval()
     return model
 
+@st.cache(allow_output_mutation=True)
+def get_model_with_weight(model_name, weight, classes, device) -> torch.nn.Module:
+    if not model_name in supported_models: raise Exception("The model is not supported")
+    model = None
+    if model_name == "resnet18":
+        model = models.resnet18()
+    if model_name == "vgg16":
+        model = models.vgg16()
+    
+    try:
+        num_ftrs = model.fc.in_features
+        model.fc = nn.Linear(num_ftrs, classes)
+        model = model.to(torch.device(device))
+        # load trained classifier
+        model.load_state_dict(torch.load(weight, map_location=torch.device(device)))
+        model.eval()
+    except Exception as e:
+        logging.error("Model is not loaded or weight is not supported")
+    return model
 
 @st.cache(allow_output_mutation=True)
 def get_layer(model= None, **kwargs):
@@ -80,18 +138,17 @@ def get_data(**kwargs):
     size = kwargs["size"]
     transformer = transforms.Compose([transforms.Resize(size), transforms.ToTensor()])
     test_set = eval("torchvision.datasets.%s(root='%s', transform=transformer)"%(loader, root))
-    test_loader = torch.utils.data.DataLoader(test_set, shuffle=True, batch_size=samples, pin_memory=True)
-    #x_batch, y_batch = iter(te
+    test_loader = torch.utils.data.DataLoader(test_set, shuffle=False, batch_size=samples, pin_memory=True)
     return test_loader
 
 @st.cache(allow_output_mutation=True)
 def get_pertubation_output(**kwargs) -> pd.DataFrame:
     model = kwargs["model"]
     explantion_layer = kwargs["layer"]
-    x_batch, y_batch = kwargs["data"]
     image_size =kwargs["data"][0][0][0].size()
     perurbation_method = kwargs["perturbation_option"]
-    print(image_size)
+    x_batch, y_batch = kwargs["data"]
+    print(x_batch)
     results = {}
     #Produce faitfulness
     methods = kwargs["methods"]
@@ -100,7 +157,7 @@ def get_pertubation_output(**kwargs) -> pd.DataFrame:
             time_1 = time.time()
             a_batch_gradCAM = LayerGradCam(model, explantion_layer).attribute(inputs=x_batch, target=y_batch)
             print("gradcam: terminated before exp")
-            a_batch = LayerAttribution.interpolate(a_batch_gradCAM, image_size).sum(axis=1).cpu().detach().numpy()
+            a_batch = LayerAttribution.interpolate(a_batch_gradCAM, image_size, interpolate_mode="bilinear").sum(axis=1).cpu().detach().numpy()
             a_batch = quantus.normalise_by_max(a_batch)   
             print("terminated after exp") 
             time_2 = time.time()
@@ -122,7 +179,7 @@ def get_pertubation_output(**kwargs) -> pd.DataFrame:
             time_1 = time.time()
             print("Integrated: terminated before exp")
             a_batch = quantus.normalise_by_max(IntegratedGradients(model).attribute(inputs=x_batch, target=y_batch,
-            baselines=torch.zeros_like(x_batch)).sum(axis=1).cpu().numpy())
+                baselines=torch.zeros_like(x_batch)).sum(axis=1).cpu().numpy())
             time_2 = time.time()
             result = output_perturbation(x_batch, y_batch, model, a_batch, perurbation_method, method, 20)
             print("terminated after res")
@@ -142,11 +199,9 @@ def generate_aopc(**kwargs):
     dataloader = kwargs["data"]
     #image_size =kwargs["data"][0][0][0].size()
     perurbation_method = kwargs["perturbation_option"]
-    n_batch = kwargs["n_batch"]
+    n_batch = kwargs["n_smaples"]
     total_result = []
-    
     for i, batch in enumerate(dataloader):
-        print(i, batch)
         #x_data, y_data = batch
         kwargs["data"] = batch
         batch_result = get_pertubation_output(**kwargs)
