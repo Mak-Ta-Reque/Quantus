@@ -130,7 +130,7 @@ with col1:
     'Model name',
   gui_api.supported_models, key="model_name")   
 with col3:
-    classes = st.number_input("Number of lasses", 1, key="classes")
+    classes = st.number_input("Number of classes", 1, key="classes")
 
 with col2:
     device = st.selectbox(
@@ -159,36 +159,63 @@ logger.info(f"The name of explantion layer is {str(layer)}")
 
 
 # Select all explantion mentod 
-explantions = config["EXPLANATION"]["method"]
-explantion_options = st.multiselect(
-     'Which explantion do you want to use',
-     (["IntegratedGradients", "LayerGradCam"]))
 
-perturbation_method = config["EVALUATION"]
+
 perturbation_option = st.selectbox(
      'Which perturbation method do you want to use',
-    perturbation_method)
+    ["Noisy linear (SOTA)", "Telea", "NS", "Zero"])
 
 
 
 
 
-imputation_percentages = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+imputation_percentages = [0.005, 0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95, 0.995]
 
+explantion_options = st.selectbox(
+     'Which explantion do you want to use',
+     (["ig", "ig_sg", "ig_var"]))
 if current_weight_path and next(iter(cifer_test)) and model:
-    explantion, acc = generate_exp(cifer_test, 1, model, "ig")
+    explantion, acc = generate_exp(cifer_test, 1, model, explantion_options)
     st.subheader(f"Model accuracy is {acc} %")
 
 exp_list = []
 for key, val in explantion.items():
     exp_list.append(val["expl"])
-from  road_evaluation.road.imputations import NoisyLinearImputer, ZeroImputer, GAINImputer, ChannelMeanImputer, ImpaintingImputation
+from  road_evaluation.road.imputations import NoisyLinearImputer, ZeroImputer, GAINImputer, ChannelMeanImputer, ImpaintingImputation, ImpaintingImputationNS
 from road_evaluation.road import run_road
 
+if perturbation_option == "Noisy linear (SOTA)":
+    pert_method = NoisyLinearImputer()
+elif perturbation_option == "Zero":
+    pert_method = ZeroImputer()
+elif perturbation_option == "Telea":
+    pert_method = ImpaintingImputation()
+elif perturbation_option == "NS":
+    pert_method = ImpaintingImputationNS()
+else:
+    raise NotImplementedError(f"{perturbation_option} is not implemented")
 # update transform_test for adapting with the road
+
+ranking_option = st.selectbox(
+     'Which ranking aproach',
+     (["threshold", "sort"]))
+if ranking_option == "threshold":
+    threshold = True
+elif ranking_option == "sort":
+    threshold = False
+
+
 transform_test = transforms.Compose([transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-accuracies_road_morf, probs = run_road(model, cifer_test, exp_list, transform_test, imputation_percentages, morf=True, imputation=NoisyLinearImputer(), threshold=False)
-st.line_chart(accuracies_road_morf)
+accuracies_road_morf, probs = run_road(model, cifer_test, exp_list, transform_test, imputation_percentages, morf=True, imputation=pert_method, threshold=threshold)
+accuracies_road_lerf, probs = run_road(model, cifer_test, exp_list, transform_test, imputation_percentages, morf=False, imputation=pert_method, threshold=threshold)
+if not threshold:
+   accuracies_road_lerf =  torch.flip(accuracies_road_lerf, dims =[0])
+
+accuracies = {"MoRF": accuracies_road_morf,
+            "LeRF": accuracies_road_lerf
+
+}
+st.line_chart(accuracies)
 
 # I am working here
 
