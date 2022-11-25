@@ -270,7 +270,7 @@ class NoisyLinearImputer(BaseImputer):
 
         # Fill the values with the solution of the system.
         img_infill = imgflt.clone()
-        img_infill[:, indices_linear] = res.t() + self.noise*torch.randn_like(res.t())
+        img_infill[:, indices_linear] = res.t() #+ self.noise*torch.randn_like(res.t())
             
         return img_infill.reshape_as(img)
 

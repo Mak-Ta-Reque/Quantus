@@ -22,7 +22,7 @@ class CSVdataset(torch.utils.data.Dataset):
        
         id = int(filename.split("/")[-1].split(".")[0])
         label = self.df.loc[self.df.id == id]["label"].tolist()[0]
-        
+        print(label)
         label = self.class2index[label]
         image = PIL.Image.open(os.path.join(self.images_folder, f"{filename}"))
         if self.transform is not None:

@@ -66,24 +66,25 @@ class ImputedDataset(torch.utils.data.Dataset):
         """
         if not self.use_cache or index not in self.cached_img:
             img, target = self.base_dataset[index]
+            print (self.base_dataset)
             pred = self.prediction[index] if self.prediction else 0
             explanation = self.img_mask[index]
             mask_copy = rescale_channel(explanation)
-            mask_copy += self.random_v
+            #mask_copy += self.random_v
             mask_copy = mask_copy.reshape(-1,1)
             mask_copy = torch.tensor(mask_copy)
             # doing this so that it is consistent with all other datasets
             # to return a PIL Image
             # img = Image.fromarray(img)
             width, height = img.size(-2), img.size(-1)
-            salient_order = torch.argsort(mask_copy, axis=0, descending=True) # highest values first.
+            salient_order = torch.argsort(mask_copy, axis=0, stable=True, descending=True) # highest values first.
             bitmask = torch.ones(width*height, dtype=torch.uint8) # Set to zero if pixel is removed.
 
             ## my modification
             if self.remove:
                 coords = salient_order[:int(width*height*self.th_p)]
             else:
-                coords = salient_order[int(width*height*(self.th_p)):]
+                coords = salient_order[width*height - int(width*height*(self.th_p)):]
                 #print(len(coords))
             bitmask[coords] = 0
             bitmask = bitmask.reshape(width, height)
@@ -171,14 +172,14 @@ class ImputedDatasetMasksOnly(torch.utils.data.Dataset):
 			pred = self.prediction[index] if self.prediction else 0
 			explanation = self.img_mask[index]
 			mask_copy = rescale_channel(explanation)
-			mask_copy += self.random_v
+			#mask_copy += self.random_v
 			mask_copy = mask_copy.reshape(-1,1)
 			mask_copy = torch.tensor(mask_copy)
 			# doing this so that it is consistent with all other datasets
 			# to return a PIL Image
 			# img = Image.fromarray(img)
 			width, height = img.size(-2), img.size(-1)
-			salient_order = torch.argsort(mask_copy, axis=0, descending=True) # highest values first.
+			salient_order = torch.argsort(mask_copy, axis=0, descending=True,  stable=True) # highest values first.
 			bitmask = torch.ones(width*height, dtype=torch.uint8) # Set to zero if pixel is removed.
 
 			## my modification
@@ -265,10 +266,12 @@ class ThresholdDataset(torch.utils.data.Dataset):
         """
         if not self.use_cache or index not in self.cached_img:
             img, target = self.base_dataset[index]
+            print(self.prediction)
             pred = self.prediction[index] if self.prediction else 0
+
             explanation = self.img_mask[index]
             mask_copy = rescale_channel(explanation)
-            mask_copy += self.random_v
+            #mask_copy += self.random_v
             mask_copy = mask_copy.reshape(-1,1)
             mask_copy = torch.tensor(mask_copy)
             # doing this so that it is consistent with all other datasets
@@ -284,6 +287,8 @@ class ThresholdDataset(torch.utils.data.Dataset):
     
             mask_copy =  (mask_copy - min_heatmap_val)/(max_heatmap_val - min_heatmap_val)
             mask_copy = torch.squeeze(mask_copy,dim=1)
+            max_heatmap_val = torch.max(mask_copy)
+            min_heatmap_val = torch.min(mask_copy)
             if self.remove:
                 # mask (white) with important region
                 coords = mask_copy.le(1.0 - self.th_p)

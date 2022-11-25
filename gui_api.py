@@ -62,7 +62,7 @@ def generate_exp(dataset, batch_size, model, explainer):
                     100 * correct / len(testloader.dataset)))
 
     cifar_train_expl = {}
-
+    out = []
     ## get explanation function
     get_expl = explanation_method(explainer)
     for i_num in tqdm(range(len(dataset)), position=0, leave=True):
@@ -70,6 +70,7 @@ def generate_exp(dataset, batch_size, model, explainer):
         sample, clss = dataset[i_num]
         outputs = model(sample.unsqueeze(0).to(device))
         _, predicted = torch.max(outputs.data, 1)
+        out.append(predicted)
         expl = get_expl(model, sample.unsqueeze(0).to(device), clss)
         # print(predicted.data[0].cpu().numpy(), outputs.data[0].cpu().numpy(), clss)
         expl_dict['expl'] = expl
@@ -77,7 +78,7 @@ def generate_exp(dataset, batch_size, model, explainer):
         expl_dict['label'] = clss
         expl_dict['predict_p'] = outputs.data[0].cpu().numpy()
         cifar_train_expl[i_num] = expl_dict
-    return cifar_train_expl, acc
+    return cifar_train_expl, acc, out
 
 
 @st.cache(allow_output_mutation=True)
